@@ -1,0 +1,236 @@
+/* ── Tailwind base ── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts fallback ── */
+@layer base {
+  :root {
+    --brand:     #13ae84;
+    --brand-dim: rgba(19, 174, 132, 0.15);
+    --brand-glow: rgba(19, 174, 132, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #080c10;
+    color: #c8d6e5;
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0d1117; }
+  ::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 2px; }
+
+  /* Selection */
+  ::selection { background: var(--brand-dim); color: #fff; }
+}
+
+/* ── Reusable component layer ── */
+@layer components {
+
+  /* Gradient text */
+  .grad-text {
+    background: linear-gradient(135deg, #13ae84 0%, #36c99c 50%, #7feacf 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card */
+  .glass {
+    background: rgba(20, 27, 36, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    background: var(--brand);
+    color: #080c10;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.02em;
+    transition: all 0.25s cubic-bezier(.16,1,.3,1);
+    box-shadow: 0 0 0 0 var(--brand-glow);
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--brand-glow), 0 0 0 1px var(--brand);
+  }
+
+  /* Outline button */
+  .btn-outline {
+    border: 1.5px solid rgba(19,174,132,0.4);
+    color: var(--brand);
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.02em;
+    transition: all 0.25s cubic-bezier(.16,1,.3,1);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+  }
+  .btn-outline:hover {
+    background: var(--brand-dim);
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px var(--brand-glow);
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand);
+    display: block;
+  }
+
+  /* Nav link */
+  .nav-link {
+    position: relative;
+    color: #8a9bb0;
+    font-size: 0.85rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--brand);
+    transition: width 0.25s cubic-bezier(.16,1,.3,1);
+  }
+  .nav-link:hover { color: var(--brand); }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Tech chip */
+  .tech-chip {
+    font-size: 0.7rem;
+    font-family: 'DM Sans', monospace;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    background: rgba(19,174,132,0.1);
+    border: 1px solid rgba(19,174,132,0.2);
+    color: #36c99c;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Project card */
+  .project-card {
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s cubic-bezier(.16,1,.3,1);
+  }
+  .project-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+      0 24px 60px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(19,174,132,0.25),
+      0 0 40px rgba(19,174,132,0.07);
+  }
+
+  /* Contact input */
+  .contact-input {
+    background: rgba(20,27,36,0.6);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    color: #c8d6e5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .contact-input:focus {
+    border-color: rgba(19,174,132,0.5);
+    box-shadow: 0 0 0 3px rgba(19,174,132,0.1);
+  }
+  .contact-input::placeholder { color: #4a5a6a; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* Grid background */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(19,174,132,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(19,174,132,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Skill bar */
+  .skill-bar-fill {
+    transition: width 1.4s cubic-bezier(.16,1,.3,1);
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #088c6b, #36c99c);
+  }
+}
+
+/* ── Light mode overrides ── */
+html.light body { background: #f0f4f8; color: #1a2332; }
+html.light .glass {
+  background: rgba(255,255,255,0.75);
+  border-color: rgba(0,0,0,0.08);
+}
+html.light .contact-input {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(0,0,0,0.12);
+  color: #1a2332;
+}
+html.light .nav-link { color: #4a5a6a; }
+html.light .tech-chip { background: rgba(19,174,132,0.08); }
+html.light .grid-bg {
+  background-image:
+    linear-gradient(rgba(19,174,132,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19,174,132,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
