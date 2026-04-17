@@ -14,7 +14,7 @@ load_dotenv()
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
 FROM_EMAIL     = os.getenv("fromemail", "onboarding@resend.dev")
 TO_EMAIL       = os.getenv("toemail", "shuklakirti2004@gmail.com")
-ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "*").split(",")]
+ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "https://kirtishuklaportfolio.vercel.app/").split(",")]
 MAX_REQUESTS    = 3
 WINDOW_SECONDS  = 60 * 10  # 10 minutes
 
