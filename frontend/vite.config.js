@@ -18,7 +18,7 @@ export default defineConfig({
     proxy: {
       // Proxy /api calls to Python backend during dev
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'https://portfoliokirti.onrender.com',
         changeOrigin: true,
       },
     },
