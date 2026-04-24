@@ -15,7 +15,7 @@ const ExternalIcon = () => (
 )
 
 const ProjectCard = ({ project, delay }) => (
-  <div class={`project-card glass rounded-2xl overflow-hidden reveal reveal-delay-${delay}`}>
+  <div class={`project-card glass rounded-2xl overflow-hidden reveal reveal-delay-${delay}`} style={'transition:0.3'} >
 
     <div class="h-1" style={{ background: `linear-gradient(90deg, ${project.color}, transparent)` }} />
 
